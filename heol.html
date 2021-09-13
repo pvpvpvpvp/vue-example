@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 개발버전, 도움되는 콘솔 경고를 포함. -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+    <div id="app">
+        {{message}}
+    </div>
+    <!-- <script>
+        document.getElementById("app").innerHTML="Hello, Vanilla JS";
+    </script> -->
+    <script>
+        var app = new Vue ({
+            el: "#app",
+            data:{
+                message:"Hellow, Vue.js"
+            },
+            beforeCreate: function() {
+                console.log("beforeCreate");
+                console.log("data:",this.message);
+            },
+            created: function(){
+                console.log("created");
+                console.log("date:",this.message);
+                this.message="Model can change";
+                // 이 단계는 API 서버 등에서 내용을 불러 올 수 있는 단계
+                console.log("el:",this.$el);
+                // dom에 부착 되지 않음
+                // ui 관련 작업에 적합하지 않음.
+
+            },
+            mounted: function(){
+                console.log("mounted");
+                console.log("el:", this.$el);
+                // el요소가 바인딩 되었다.
+                // dom 관련 작업을 수행할 수 있다.
+                console.log("DOM:",this.$el.innerText);
+
+            },
+            updated: function() {
+                console.log("update:",this.message);
+            }
+        })
+    </script>
+</body>
+</html>
